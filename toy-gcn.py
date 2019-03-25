@@ -99,15 +99,15 @@ def ReLU (m):
 
 print("\n---\nPerforming forward pass of GCN:\n---\n")
 
-ax = A*X   # perform convolution between each node features and his neighbour features, 
-print("\nResult of convolution A*X:")
-print(ax)
+conv = P*X   # perform convolution between each node features and his neighbour features, 
+print("\nResult of convolution P*X:")
+print(conv)
 print("As can be seen, the result is equal to the sum of the features of each node with the features of its neighbors!")
 
-axw = ax*W
-print("\nResult of weight multiplication, A*X*W:")
-print(axw)
+conv_w = conv*W
+print("\nResult of weight multiplication, P*X*W:")
+print(conv_w)
 
 print("\nApplying activation function, output feature matrix H:")
-H = ReLU(axw)
+H = ReLU(conv_w)
 print(H)
