@@ -94,19 +94,22 @@ def ReLU (m):
 # ----------------------------
 # now we're ready to write down our GCN composed of one hidden layer:
 #
-# Input Layer    Convolutional Layer    Weight Layer    Output Layer
-#     X       ->        A * X        ->   A*X * W    ->      H
+#               |   Convolutional Layer   |
+# Input Layer   |  Pooling     Filtering  |   Output Layer
+#     X        ->   A * X  ->  (A*X) * W   ->      H
 
 print("\n---\nPerforming forward pass of GCN:\n---\n")
 
-conv = P*X   # perform convolution between each node features and his neighbour features, 
-print("\nResult of convolution P*X:")
+conv = P*X
+print("\nResult of P*X:")
 print(conv)
-print("As can be seen, the result is equal to the sum of the features of each node with the features of its neighbors!")
+print("As can be seen, the result is equal to the sum of the features of each node with the", 
+      "features of its neighbors! This operation is similar to the pooling in a standard CNN.")
 
 conv_w = conv*W
 print("\nResult of weight multiplication, P*X*W:")
 print(conv_w)
+print("The multiplication with the weights is similar to the filtering operation in a standard CNN.")
 
 print("\nApplying activation function, output feature matrix H:")
 H = ReLU(conv_w)
